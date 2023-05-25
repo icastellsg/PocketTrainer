@@ -30,11 +30,14 @@ export class TarjetaPokemonComponent implements OnChanges {
     }
     if(this.fullData){
       this.id = this.fullData.species.url.substring(42,this.fullData.species.url.length-1);
-      this.data = {
-        name:this.fullData.species.name,
-        url: "",
-        captured:false
-      }
+      const name = this.fullData.species.name
+      const captured = this.pokemonService.getPokemonCaptured(this.id).subscribe((result) =>{
+        this.data = {
+          name: name,
+          url: "",
+          captured: result
+        }
+      })
     }
   }
 

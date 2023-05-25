@@ -663,7 +663,7 @@ export const Mock: Data = {
     {
       "name": "ditto",
       "url": "https://pokeapi.co/api/v2/pokemon/132/",
-      "captured": false
+      "captured": true
     },
     {
       "name": "eevee",

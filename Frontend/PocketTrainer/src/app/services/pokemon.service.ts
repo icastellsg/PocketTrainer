@@ -3,13 +3,15 @@ import { Resultado } from '../interfaces/pokeapi';
 import { Pokemon } from '../interfaces/pokemon';
 import { Mock } from 'src/assets/mocks/mockPokemonList';
 import { pokemonMock } from 'src/assets/mocks/mockPokemonDetails';
+import { Observable } from 'rxjs';
+import { RemoteApiService } from './remote-api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokemonService {
 
-  constructor() { }
+  constructor(private remoteApi: RemoteApiService) { }
 
   async getByPage(page:number, size: number = 40):Promise<Resultado[]>{
     //if(page > 3) return [];
@@ -26,6 +28,11 @@ export class PokemonService {
     return pokemonMock;
   }
 
+  getPokemonCaptured(id:string):Observable<boolean>{
+    //const res = await fetch(`localhost:8081/api/pokemons/search/existsByNumber?number=1`);
+    //return await res.json();
+    return this.remoteApi.get<boolean>(`http://localhost:8081/api/pokemons/exist/${id}`);
+  }
 
   async getDescripcion(id:string | number):Promise<string>{
     /*const res = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
