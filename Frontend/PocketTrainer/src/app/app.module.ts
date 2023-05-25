@@ -8,6 +8,8 @@ import { FotoPokemonComponent } from './components/foto-pokemon/foto-pokemon.com
 import { TarjetaPokemonComponent } from './components/tarjeta-pokemon/tarjeta-pokemon.component';
 import { DetalleComponent } from './components/detalle/detalle.component';
 import { HttpClientModule } from '@angular/common/http';
+import {MatChipsModule} from '@angular/material/chips';
+import { GeneracionComponent } from './components/generacion/generacion.component';
 
 @NgModule({
   declarations: [
@@ -16,11 +18,13 @@ import { HttpClientModule } from '@angular/common/http';
     FotoPokemonComponent,
     TarjetaPokemonComponent,
     DetalleComponent,
+    GeneracionComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -10,6 +10,10 @@
   [ngClass]="{abierto: detalle}"
   ></app-foto-pokemon>
   <div id="tarjetasContainer" #tarjetas (scroll)="onScroll($event)">
+    <div class="filtro">
+      <span style="margin-right: 10px;">Generation:</span>
+      <app-generacion (change)="onChipListChange($event)"></app-generacion>
+    </div>
     <app-tarjeta-pokemon *ngFor="let pokemon of listaPokemon"
     [data]="pokemon"
     [seleccionado]="pokemon.name === pokemonSeleccionado?.name"

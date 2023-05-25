@@ -25,7 +25,7 @@ export class TarjetaPokemonComponent implements OnChanges {
 
   extraerInfromacion(){
     if(this.data && this.data.url !== ""){
-      this.id = this.data.url.substring(34,this.data.url.length-1);
+      this.id = this.obtenerIds(this.data.url);
       return
     }
     if(this.fullData){
@@ -39,6 +39,12 @@ export class TarjetaPokemonComponent implements OnChanges {
         }
       })
     }
+  }
+
+  obtenerIds(url: string){
+    const parts = url.split('/');
+    console.log(parts)
+    return parts[parts.length - 2];
   }
 
 }

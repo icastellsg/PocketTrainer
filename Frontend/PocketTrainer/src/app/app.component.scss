@@ -11,8 +11,8 @@ header{
   background: linear-gradient(
     to right,
     #6188ff,
-    #6188ff 70%,
-    #71a4f3 71%,
+    #6188ff 80%,
+    #71a4f3 81%,
     #71a4f3 97%,
     #8ec0f0 100%
   );
@@ -56,6 +56,10 @@ footer{
   justify-content: flex-end;
   align-items: center;
   color: var.$texto-blanco;
+  .botones{
+    display: flex;
+  }
+
   a{
     color: var.$texto-blanco;
     text-decoration: none;

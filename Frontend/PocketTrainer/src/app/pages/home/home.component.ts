@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Resultado } from 'src/app/interfaces/pokeapi';
 import { Pokemon } from 'src/app/interfaces/pokemon';
 import { PokemonService } from 'src/app/services/pokemon.service';
@@ -57,4 +57,17 @@ export class HomeComponent implements OnInit {
     if(this.pokemonSeleccionado) this.detalle = !this.detalle;
   }
 
+  onChipListChange(value: string) {
+    this.listaPokemon = []
+    if(!value){
+      this.cargarLista()
+    } else
+    {
+      this.cargando = true;
+      this.pokemonService.getPokemonByGeneration(value).subscribe((result) =>{
+        this.listaPokemon = result
+        this.cargando = false;
+      })
+    }
+  }
 }

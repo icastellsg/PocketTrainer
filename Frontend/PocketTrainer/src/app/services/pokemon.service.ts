@@ -34,6 +34,12 @@ export class PokemonService {
     return this.remoteApi.get<boolean>(`http://localhost:8081/api/pokemons/exist/${id}`);
   }
 
+  getPokemonByGeneration(id:string):Observable<Resultado[]>{
+    //const res = await fetch(`localhost:8081/api/pokemons/search/existsByNumber?number=1`);
+    //return await res.json();
+    return this.remoteApi.get<Resultado[]>(`http://localhost:8081/api/pokeapi/generations/${id}`);
+  }
+
   async getDescripcion(id:string | number):Promise<string>{
     /*const res = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
     const resJson = await res.json();

@@ -76,6 +76,7 @@ app-detalle{
   }
 }
 
+
 #tarjetasContainer{
   display: flex;
   flex-direction: column;
@@ -84,6 +85,23 @@ app-detalle{
   overflow-y: scroll;
   overflow-x: hidden;
   margin-right: 10px;
+  .filtro{
+    display: flex;
+    text-decoration: none;
+    background-color: #88daf2;
+    align-items: center;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 20px;
+    border-radius: 50px;
+    margin-left: 30px;
+    margin-right: 30px;
+    color: #f0fbff;
+    border: solid 3px #30408d;
+    span{
+      font-size: large;
+    }
+  }
 }
 
 #spinner{
