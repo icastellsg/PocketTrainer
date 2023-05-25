@@ -32,7 +32,8 @@ export class TarjetaPokemonComponent implements OnChanges {
       this.id = this.fullData.species.url.substring(42,this.fullData.species.url.length-1);
       this.data = {
         name:this.fullData.species.name,
-        url: ""
+        url: "",
+        captured:false
       }
     }
   }

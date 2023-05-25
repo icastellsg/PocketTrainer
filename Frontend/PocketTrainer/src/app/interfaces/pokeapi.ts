@@ -8,4 +8,5 @@ export interface Data{
 export interface Resultado {
   name: string,
   url: string,
+  captured: boolean
 }
