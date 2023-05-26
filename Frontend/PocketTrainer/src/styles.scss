@@ -1,5 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+:root {
+  --texto-blanco: #f0fbff;
+  --seleccionado-naranja: #f49545;
+}
+
 body{
   margin: 0;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -121,6 +128,35 @@ p{
 //End of type icons
 
 .mat-ripple {
-  background-color: #f49545;
+  background-color: var(--seleccionado-naranja);
+}
 
+.mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) .mdc-evolution-chip__text-label{
+  color: var(--texto-blanco) !important;
+}
+
+.mdc-dialog__title{
+  background-color: #6188ff;
+  color: white !important;
+  margin-bottom: 0px !important;
+}
+
+.mdc-dialog__content{
+  padding-top: 10px !important;
+  padding-bottom: 0px !important;
+  background-color: #88daf2;
+}
+
+.mat-mdc-dialog-actions{
+  padding-left: 20px !important;
+  background-color: #619cde;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: #fceab8;
+}
+
+.mat-mdc-dialog-container, .mat-mdc-dialog-container .mdc-dialog__container, .mat-mdc-dialog-container .mdc-dialog__surface{
+  background-color: transparent !important;
+  overflow: hidden;
 }

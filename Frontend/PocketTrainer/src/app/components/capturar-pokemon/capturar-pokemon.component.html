@@ -1,0 +1,22 @@
+<div class="center-on-page" *ngIf="!isLoading; else dialog">
+  <div class="pokeball">
+    <div class="pokeball__button"></div>
+  </div>
+</div>
+
+<ng-template #dialog>
+<div>
+<h1 mat-dialog-title class="custom-dialog-header">You've captured a {{data | titlecase}}!</h1>
+<div mat-dialog-content>
+  <p>Wanna give it a nickname?</p>
+  <mat-form-field>
+    <mat-label>Nickname</mat-label>
+    <input matInput [(ngModel)]="nickname">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="nickname" cdkFocusInitial>Ok</button>
+</div>
+</div>
+</ng-template>

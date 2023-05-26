@@ -10,6 +10,13 @@ import { DetalleComponent } from './components/detalle/detalle.component';
 import { HttpClientModule } from '@angular/common/http';
 import {MatChipsModule} from '@angular/material/chips';
 import { GeneracionComponent } from './components/generacion/generacion.component';
+import { CapturarPokemonComponent } from './components/capturar-pokemon/capturar-pokemon.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LiberarPokemonComponent } from './components/liberar-pokemon/liberar-pokemon.component';
 
 @NgModule({
   declarations: [
@@ -19,12 +26,19 @@ import { GeneracionComponent } from './components/generacion/generacion.componen
     TarjetaPokemonComponent,
     DetalleComponent,
     GeneracionComponent,
+    CapturarPokemonComponent,
+    LiberarPokemonComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    MatChipsModule
+    MatChipsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

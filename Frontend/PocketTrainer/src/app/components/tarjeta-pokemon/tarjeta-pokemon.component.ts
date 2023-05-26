@@ -1,7 +1,11 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Resultado } from 'src/app/interfaces/pokeapi';
 import { Pokemon } from 'src/app/interfaces/pokemon';
 import { PokemonService } from 'src/app/services/pokemon.service';
+import { CapturarPokemonComponent } from '../capturar-pokemon/capturar-pokemon.component';
+import { PokemonCaptured } from 'src/app/interfaces/PokemonCaptured';
+import { LiberarPokemonComponent } from '../liberar-pokemon/liberar-pokemon.component';
 
 @Component({
   selector: 'app-tarjeta-pokemon',
@@ -10,7 +14,7 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 })
 export class TarjetaPokemonComponent implements OnChanges {
 
-  constructor(private pokemonService: PokemonService){}
+  constructor(private pokemonService: PokemonService, public dialog: MatDialog){}
 
   ngOnChanges(): void {
     this.extraerInfromacion()
@@ -43,8 +47,44 @@ export class TarjetaPokemonComponent implements OnChanges {
 
   obtenerIds(url: string){
     const parts = url.split('/');
-    console.log(parts)
     return parts[parts.length - 2];
   }
 
+  openDialog(event: MouseEvent): void {
+    event.preventDefault();
+    if (this.data?.captured) {
+      const dialogRef = this.dialog.open(LiberarPokemonComponent, {
+        data: this.data?.name,
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (result){
+          this.pokemonService.deletePokemon(Number(this.id)).subscribe({
+            next: (response) => {
+              console.log(response)
+          }
+          })
+        }
+      });
+    }
+    else{
+      const dialogRef = this.dialog.open(CapturarPokemonComponent, {
+        data: this.data?.name,
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (result){
+          const pokemonCaptured:PokemonCaptured = {
+            number: Number(this.id),
+            name: result
+          }
+          this.pokemonService.addPokemon(pokemonCaptured).subscribe({
+            next: (response) => {
+              console.log(response)
+          }
+          })
+        }
+      });
+    }
+  }
 }
