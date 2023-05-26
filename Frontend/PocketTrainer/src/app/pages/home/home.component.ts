@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { isPokemonCaptured } from 'src/app/interfaces/PokemonCaptured';
 import { Resultado } from 'src/app/interfaces/pokeapi';
 import { Pokemon } from 'src/app/interfaces/pokemon';
 import { PokemonService } from 'src/app/services/pokemon.service';
@@ -50,6 +51,11 @@ export class HomeComponent implements OnInit {
       return this.cambiarEstadoDetalle()
     }
     this.pokemonSeleccionado = await this.pokemonService.getById(id);
+  }
+
+  pokemonCapturado(pokemon:isPokemonCaptured){
+    this.listaPokemon[pokemon.number-1].captured = pokemon.captured
+    console.log(this.listaPokemon[pokemon.number-1])
   }
 
 

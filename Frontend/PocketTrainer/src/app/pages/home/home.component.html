@@ -18,6 +18,7 @@
     [data]="pokemon"
     [seleccionado]="pokemon.name === pokemonSeleccionado?.name"
     (clickeado)="tarjetaClickeada($event)"
+    (capturado)="pokemonCapturado($event)"
     >
   </app-tarjeta-pokemon>
   <img src="./../../../assets/img/spinner.svg" alt="Cargando" id="spinner" *ngIf="cargando">
