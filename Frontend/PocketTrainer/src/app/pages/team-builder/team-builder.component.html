@@ -1,0 +1,67 @@
+<main class="teamBuilder">
+  <div class ="header">
+  <h2>{{typeName}} {{teamName}}</h2>
+  <div class="buttons">
+    <button mat-raised-button="" [disabled]="!canSave()"
+      class="mdc-button mdc-button--raised mat-mdc-raised-button mat-primary mat-mdc-button-base" (click)="onSave()">
+      <mat-icon class ="icons" aria-hidden="false" fontIcon="check"></mat-icon>
+      <span class="mdc-buttonlabel">Save</span>
+    </button>
+    <button mat-raised-button=""
+      class="mdc-button mdc-button--raised mat-mdc-raised-button mat-primary mat-mdc-button-base"
+      (click)="onCancel()">
+      <mat-icon class ="icons" aria-hidden="false" fontIcon="close"></mat-icon>
+      <span class="mdc-buttonlabel">Cancel</span>
+    </button>
+  </div>
+</div>
+
+  <div class="deck-contents-container">
+    <div class = "name">
+  <h4>Name*:</h4>
+  <mat-form-field id="teamName" appearance="fill">
+    <input matInput [(ngModel)]="teamName" placeholder="Team Name" maxlength="15" />
+    <div [hidden]="!requestFailed ">
+      <small>{{ error }}</small>
+    </div>
+  </mat-form-field>
+</div>
+<div cdkDrag class="deck-item" *ngFor="let empty of [].constructor(6); let i=index">
+  <div *ngIf="teamPokemons[i]" class="deck-card-container" (click)="onDelete(teamPokemons[i])">
+    <img class="pokemon-icon clickable" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{teamPokemons[i].number}}.png"
+      alt={{teamPokemons[i].name}}/>
+      <span>{{teamPokemons[i].name}}</span>
+    <!-- <app-card cdkDragHandle [name]="deckCards[i]"></app-card> -->
+  </div>
+  <div *ngIf="!teamPokemons[i]" class="svg-empty-card ">
+    <img class="empty-secondary-card " src="assets/empty_card_template.svg " alt="Empty card" />
+  </div>
+</div>
+
+  </div>
+
+  <div class="container">
+    <mat-tab-group>
+      <mat-tab label="All pokemons">
+        <div class="grid-list">
+          <div *ngFor="let pokemon of pokemons">
+            <div class="choose-card-container" (click)="onAdd(pokemon)" [ngClass]="teamPokemons.length === 6 ? 'forbidden' : 'clickable'">
+              <div *ngIf="alreadyOnTeam(pokemon)">
+                <mat-icon class="selected-pokemon">check_circle</mat-icon>
+                <div class="pokeball"></div>
+              </div>
+              <div class="pokemons">
+                <img class="pokemon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.number}}.png" alt="{{pokemon.name}}">
+                <span>{{pokemon.name}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Selected Pokemon Details">
+        <span>Work in progress...</span>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+
+</main>

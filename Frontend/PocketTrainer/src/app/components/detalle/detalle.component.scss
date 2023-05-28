@@ -9,7 +9,7 @@
 #datos{
   height: 42cqi;
   width: 90vw;
-  background-color: #fceab8;
+  background-color: var(--contenedor-amarillo);
   display: grid;
   grid-template-rows: 1fr 3fr 3fr;
   .area:first-child{
@@ -99,7 +99,7 @@
 }
 
 button{
-  background-color: #fceab8;
+  background-color: var(--contenedor-amarillo);
   border-radius: 0 25px 25px 0;
   border: unset;
   cursor: pointer;

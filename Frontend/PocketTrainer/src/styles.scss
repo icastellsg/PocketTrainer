@@ -1,11 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 :root {
   --texto-blanco: #f0fbff;
   --seleccionado-naranja: #f49545;
   --contenedor-azul: #88daf2;
+  --contenedor-amarillo: #fceab8;
 }
 
 body{
@@ -145,7 +147,7 @@ p{
 .mdc-dialog__content{
   padding-top: 10px !important;
   padding-bottom: 0px !important;
-  background-color: #88daf2;
+  background-color: var(--contenedor-azul);
 }
 
 .mat-mdc-dialog-actions{
@@ -154,7 +156,7 @@ p{
 }
 
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  background-color: #fceab8;
+  background-color: var(--contenedor-amarillo);
 }
 
 .mat-mdc-dialog-container, .mat-mdc-dialog-container .mdc-dialog__container, .mat-mdc-dialog-container .mdc-dialog__surface{
@@ -172,4 +174,11 @@ p{
 
 .clickable label {
   pointer-events: none;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+mat-tab-body{
+  background-color: var(--contenedor-amarillo);
 }

@@ -25,7 +25,7 @@
 #tarjeta{
   display: flex;
   align-items: center;
-  background-color:#fceab8;
+  background-color:var(--contenedor-amarillo);
   border-radius: 25px 5px 5px 25px;
   width: 90%;
   font-size: larger;
@@ -34,9 +34,9 @@
   gap: 1rem;
   &.seleccionado{
     background-color: #f49545;
-    -webkit-box-shadow: inset 0px 0px 7px 4px #fceab8;
-    -moz-box-shadow: inset 0px 0px 7px 4px #fceab8;
-    box-shadow: inset 0px 0px 7px 4px #fceab8;
+    -webkit-box-shadow: inset 0px 0px 7px 4px var(--contenedor-amarillo);
+    -moz-box-shadow: inset 0px 0px 7px 4px var(--contenedor-amarillo);
+    box-shadow: inset 0px 0px 7px 4px var(--contenedor-amarillo);
   }
 };
 

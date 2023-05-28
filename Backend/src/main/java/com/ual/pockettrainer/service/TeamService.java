@@ -1,6 +1,7 @@
 package com.ual.pockettrainer.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,5 +21,9 @@ public class TeamService {
             team.getPokemons().size(); // Para forzar la carga de los pokemons
         }
         return teams;
+    }
+
+    public Optional<Team> getTeamById(Long id) {
+        return this.teamRepository.findById(id);
     }
 }

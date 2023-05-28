@@ -13,10 +13,26 @@ export class TeamService {
   private teamsUrl = `http://localhost:8081/api/teams`;
 
   getTeams(): Observable<any> {
-    return this.remoteApi.get<any>(`http://localhost:8081/api/teams/allTeams`).pipe(
+    return this.remoteApi.get<any>(`${this.teamsUrl}/allTeams`).pipe(
         map((response) => {
             return response;
         })
     );
-}
+  }
+
+  getTeam(id: number): Observable<Team> {
+    return this.remoteApi.get<any>(`${this.teamsUrl}/getTeam/${id}`);
+  }
+
+  updateTeam(id: number, team: Team): Observable<any> {
+    return this.remoteApi.put(this.teamsUrl + `/${id}`, team);
+  }
+
+  addTeam(team: Team): Observable<Team> {
+    return this.remoteApi.post<any>(this.teamsUrl, team);
+  }
+
+  deleteTeam(id: number): Observable<Team> {
+    return this.remoteApi.delete<any>(this.teamsUrl + `/${id}`);
+  }
 }

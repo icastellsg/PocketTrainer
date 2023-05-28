@@ -6,6 +6,7 @@ import { pokemonMock } from 'src/assets/mocks/mockPokemonDetails';
 import { Observable } from 'rxjs';
 import { RemoteApiService } from './remote-api.service';
 import { PokemonCaptured } from '../interfaces/PokemonCaptured';
+import { PokemonDDBB } from '../interfaces/Teams';
 
 @Injectable({
   providedIn: 'root'
@@ -47,7 +48,11 @@ export class PokemonService {
 
   deletePokemon(id: number): Observable<PokemonCaptured> {
     return this.remoteApi.delete<any>(`http://localhost:8081/api/pokemons` + `/${id}`);
-}
+  }
+
+  getPokemons(): Observable<PokemonDDBB[]> {
+    return this.remoteApi.get<PokemonDDBB[]>(`http://localhost:8081/api/pokemons/allPokemons`);
+  }
 
   async getDescripcion(id:string | number):Promise<string>{
     /*const res = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
