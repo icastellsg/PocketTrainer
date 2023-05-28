@@ -1,0 +1,129 @@
+.teamsList{
+  height: calc(100vh - 110px);
+  background: repeating-linear-gradient(
+    0deg,
+    #79a0e3 0px,
+    #79a0e3 10px,
+    #668cd7 10px,
+    #668cd7 50px,
+    #79a0e3 50px,
+    #79a0e3 60px,
+    #5576c5 60px,
+    #5576c5 90px,
+    #79a0e3 90px,
+    #79a0e3 100px,
+    #4c69b8 100px,
+    #4c69b8 140px,
+    #79a0e3 140px,
+    #79a0e3 150px,
+    #4660b4 150px,
+    #4660b4 160px,
+    #79a0e3 160px,
+    #79a0e3 170px,
+    #5576c5 170px,
+    #5576c5 190px,
+  );
+}
+
+h2{
+  padding: 20px;
+  margin: 0px;
+  color: var(--texto-blanco);
+  -webkit-text-stroke: 1px #30607a;
+}
+
+.grid-list {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 315px);
+  grid-gap: 50px;
+  padding: 0px 20px 20px 20px;
+  margin-right: 10px;
+  max-height: 82%;
+  }
+
+  ::-webkit-scrollbar{
+    width: 12px;
+  }
+  ::-webkit-scrollbar-thumb{
+    background-color: #e9563d;
+    border-radius: 2px;
+    /* Making the thumb smaller */
+    box-shadow: inset 0 0 0 2px #882a1a;
+     border-left: 1.5px solid transparent;
+     border-right: 1.5px solid transparent;
+     background-clip: padding-box;
+    cursor:grab;
+  }
+  ::-webkit-scrollbar-track {
+    border: solid #90ace7 2px;
+    cursor: pointer;
+    background: repeating-linear-gradient(
+      0deg,
+      #276d83,
+      #276d83 5px,
+      #1c4760 7px,
+      #1c4760 9px
+    );
+  }
+
+  .svg-new-deck {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fceab8;
+  border-radius: 10px;
+  border: 2px solid black;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  height: 220px;
+  font-size: 24px;
+  color: #333;
+  .deck-name {
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color:#ffcb05;
+    text-align: center;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .svg-new-deck:before {
+  content: "+";
+  font-size: 80px;
+  line-height: 1;
+  }
+
+  .app-equipos {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  }
+
+  .pokemon-icon {
+  width: 80px;
+  height: 80px;
+  margin: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  }
+
+  .pokemon-icon img {
+  width: 70px;
+  height: 70px;
+  }
+
+  .teams{
+    margin-right: 10px;
+  }

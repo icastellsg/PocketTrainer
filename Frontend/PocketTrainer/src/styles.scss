@@ -5,6 +5,7 @@
 :root {
   --texto-blanco: #f0fbff;
   --seleccionado-naranja: #f49545;
+  --contenedor-azul: #88daf2;
 }
 
 body{
@@ -159,4 +160,16 @@ p{
 .mat-mdc-dialog-container, .mat-mdc-dialog-container .mdc-dialog__container, .mat-mdc-dialog-container .mdc-dialog__surface{
   background-color: transparent !important;
   overflow: hidden;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.forbidden {
+  cursor: not-allowed;
+}
+
+.clickable label {
+  pointer-events: none;
 }

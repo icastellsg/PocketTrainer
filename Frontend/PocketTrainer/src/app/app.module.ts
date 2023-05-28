@@ -17,6 +17,10 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LiberarPokemonComponent } from './components/liberar-pokemon/liberar-pokemon.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { TeamsComponent } from './pages/teams/teams.component';
+import { EquiposComponent } from './components/equipos/equipos.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -28,6 +32,8 @@ import { LiberarPokemonComponent } from './components/liberar-pokemon/liberar-po
     GeneracionComponent,
     CapturarPokemonComponent,
     LiberarPokemonComponent,
+    TeamsComponent,
+    EquiposComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +44,9 @@ import { LiberarPokemonComponent } from './components/liberar-pokemon/liberar-po
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSnackBarModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,6 +6,7 @@ import {
 } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class RemoteApiService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
 
-constructor(private http: HttpClient) {}
+constructor(private http: HttpClient, private _snackBar: MatSnackBar) {}
 
 get<T>(url: string): Observable<T> {
     return this.http.get<T>(url).pipe(catchError(this.handleError<T>()));
@@ -41,6 +42,10 @@ delete<T>(url: string): Observable<T> {
 private handleError<T>(result?: T) {
   return (error: any): Observable<T> => {
     console.error(error);
+
+    const config = new MatSnackBarConfig();
+    config.duration = 8000;
+    this._snackBar.open('Sorry, an error has occurred', '✖', config);
 
     // Let the app keep running by returning an empty result.
     return of(result as T);

@@ -1,0 +1,9 @@
+<div class="deck-container">
+  <div class="svg-deck">
+        <div class="pokemon-icon" *ngFor="let pokemon of team.pokemons">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.number}}.png" alt="{{pokemon.name}}"
+              matTooltip="{{pokemon.name.toUpperCase()}}">
+        </div>
+  </div>
+  <label class="deck-name">{{team.name}}</label>
+</div>

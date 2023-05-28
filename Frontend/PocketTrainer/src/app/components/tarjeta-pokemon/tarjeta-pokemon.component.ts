@@ -88,7 +88,7 @@ export class TarjetaPokemonComponent implements OnChanges {
     dialogRef.afterClosed().subscribe(result => {
       if (result){
         this.pokemonService.deletePokemon(Number(this.id)).subscribe({
-          next: () => {
+          next: (results) => {
             const eventPokemonCaptured: isPokemonCaptured = {
               number: Number(this.id),
               captured: false
