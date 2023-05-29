@@ -30,11 +30,12 @@
   <div *ngIf="teamPokemons[i]" class="deck-card-container" (click)="onDelete(teamPokemons[i])">
     <img class="pokemon-icon clickable" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{teamPokemons[i].number}}.png"
       alt={{teamPokemons[i].name}}/>
-      <span>{{teamPokemons[i].name}}</span>
+      <span>{{teamPokemons[i].name | titlecase}}</span>
     <!-- <app-card cdkDragHandle [name]="deckCards[i]"></app-card> -->
   </div>
-  <div *ngIf="!teamPokemons[i]" class="svg-empty-card ">
-    <img class="empty-secondary-card " src="assets/empty_card_template.svg " alt="Empty card" />
+  <div *ngIf="!teamPokemons[i]" class="deck-card-container">
+    <img class="pokemon-icon " src="https://richi3f.github.io/pokemon-team-planner/static/img/sv-pokemon/0000_000.png" alt="Empty card" />
+    <span>??????</span>
   </div>
 </div>
 
@@ -52,14 +53,14 @@
               </div>
               <div class="pokemons">
                 <img class="pokemon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.number}}.png" alt="{{pokemon.name}}">
-                <span>{{pokemon.name}}</span>
+                <span>{{pokemon.name | titlecase}}</span>
               </div>
             </div>
           </div>
         </div>
       </mat-tab>
       <mat-tab label="Selected Pokemon Details">
-        <span>Work in progress...</span>
+        <app-pokemon-edition></app-pokemon-edition>
       </mat-tab>
     </mat-tab-group>
   </div>

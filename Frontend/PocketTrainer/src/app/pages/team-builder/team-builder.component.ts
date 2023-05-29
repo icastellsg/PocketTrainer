@@ -46,6 +46,7 @@ export class TeamBuilderComponent {
     });
   } else {
     this.typeName = 'Creation of';
+    this.teamName = 'new team'
   }
 
   this.pokemonApi.getPokemons().subscribe((result) => {
@@ -82,8 +83,10 @@ export class TeamBuilderComponent {
         this.team.name = this.teamName;
         this.team.pokemons = this.teamPokemons;
 
+        console.log(this.team)
         this.teamApi.updateTeam(this.teamId, this.team).subscribe({
-            next: () => {
+            next: (response) => {
+              console.log(response)
                 this.router.navigate([`/teams`]);
             },
             error: () => {},
@@ -97,6 +100,7 @@ export class TeamBuilderComponent {
             name: this.teamName,
             pokemons: this.teamPokemons
         };
+        console.log(this.team)
         this.teamApi.addTeam(this.team).subscribe({
             next: () => {
               this.router.navigate([`/teams`]);

@@ -25,6 +25,7 @@ import { TeamBuilderComponent } from './pages/team-builder/team-builder.componen
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { PokemonEditionComponent } from './components/pokemon-edition/pokemon-edition.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { MatButtonModule } from '@angular/material/button';
     TeamsComponent,
     EquiposComponent,
     TeamBuilderComponent,
+    PokemonEditionComponent,
   ],
   imports: [
     BrowserModule,

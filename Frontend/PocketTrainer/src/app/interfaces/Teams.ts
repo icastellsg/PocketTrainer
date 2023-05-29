@@ -4,6 +4,11 @@ export interface Team {
   pokemons: PokemonDDBB[];
 }
 
+export interface TeamDTO {
+  id: number;
+  name: string;
+}
+
 export interface PokemonDDBB {
   number: number;
   name: string;
