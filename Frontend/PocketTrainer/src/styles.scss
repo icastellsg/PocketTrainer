@@ -187,6 +187,30 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 mat-tab-body{
   background-color: var(--contenedor-amarillo);
   height: 380px;
+  ::-webkit-scrollbar{
+    width: 12px;
+  }
+  ::-webkit-scrollbar-thumb{
+    background-color: #e9563d;
+    border-radius: 2px;
+    /* Making the thumb smaller */
+    box-shadow: inset 0 0 0 2px #882a1a;
+     border-left: 1.5px solid transparent;
+     border-right: 1.5px solid transparent;
+     background-clip: padding-box;
+    cursor:grab;
+  }
+  ::-webkit-scrollbar-track {
+    border: solid #90ace7 2px;
+    cursor: pointer;
+    background: repeating-linear-gradient(
+      0deg,
+      #276d83,
+      #276d83 5px,
+      #1c4760 7px,
+      #1c4760 9px
+    );
+  }
 }
 
 .mat-button-toggle-appearance-standard .mat-button-toggle-label-content{

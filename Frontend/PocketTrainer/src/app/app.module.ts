@@ -27,6 +27,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { PokemonEditionComponent } from './components/pokemon-edition/pokemon-edition.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { DeleteTeamComponent } from './components/delete-team/delete-team.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     EquiposComponent,
     TeamBuilderComponent,
     PokemonEditionComponent,
+    DeleteTeamComponent,
   ],
   imports: [
     BrowserModule,

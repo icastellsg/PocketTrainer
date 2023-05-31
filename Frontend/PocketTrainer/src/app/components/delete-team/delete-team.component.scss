@@ -1,0 +1,10 @@
+button{
+  background-color: var(--seleccionado-naranja);
+  color: var(--texto-blanco);
+  margin:2px;
+}
+
+.mat-mdc-dialog-actions{
+  justify-content: end !important;
+  padding-right: 20px;
+}

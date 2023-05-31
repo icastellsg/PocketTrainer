@@ -5,7 +5,7 @@
     <label class = "deck-name">Create</label>
   </div>
   <div class = "teams" *ngFor="let team of teams">
-    <app-equipos [team]="team" routerLink="/teams/{{team.id}}/edit"></app-equipos>
+    <app-equipos [team]="team" (contextmenu)="openDialog($event, team)" routerLink="/teams/{{team.id}}/edit"></app-equipos>
   </div>
 </div>
 </main>
