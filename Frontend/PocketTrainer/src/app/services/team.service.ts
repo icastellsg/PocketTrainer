@@ -21,7 +21,7 @@ export class TeamService {
   }
 
   getTeam(id: number): Observable<Team> {
-    return this.remoteApi.get<any>(`${this.teamsUrl}/getTeam/${id}`);
+    return this.remoteApi.get<any>(`${this.teamsUrl}/${id}`);
   }
 
   updateTeam(id: number, team: Team): Observable<any> {

@@ -179,6 +179,17 @@ p{
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.mat-mdc-tab-group{
+  height: 425px;
+  border: 2px solid black;
+}
+
 mat-tab-body{
   background-color: var(--contenedor-amarillo);
+  height: 380px;
+}
+
+.mat-button-toggle-appearance-standard .mat-button-toggle-label-content{
+  z-index: 5;
+  color: var(--texto-blanco);
 }

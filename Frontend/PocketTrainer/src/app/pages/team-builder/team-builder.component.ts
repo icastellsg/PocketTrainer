@@ -25,6 +25,7 @@ export class TeamBuilderComponent {
   team!: Team;
   teamName: string = "";
   teamId!: number;
+  selectedPokemon!: PokemonDDBB
 
   constructor(
     private router: Router,
@@ -42,7 +43,6 @@ export class TeamBuilderComponent {
         this.team = result;
         this.teamPokemons = structuredClone(result.pokemons);
         this.teamName = result.name;
-        console.log(this.team)
     });
   } else {
     this.typeName = 'Creation of';
@@ -51,7 +51,6 @@ export class TeamBuilderComponent {
 
   this.pokemonApi.getPokemons().subscribe((result) => {
     this.pokemons = result;
-    console.log(this.pokemons)
   });
   }
 
@@ -83,10 +82,8 @@ export class TeamBuilderComponent {
         this.team.name = this.teamName;
         this.team.pokemons = this.teamPokemons;
 
-        console.log(this.team)
         this.teamApi.updateTeam(this.teamId, this.team).subscribe({
-            next: (response) => {
-              console.log(response)
+            next: () => {
                 this.router.navigate([`/teams`]);
             },
             error: () => {},
@@ -100,7 +97,6 @@ export class TeamBuilderComponent {
             name: this.teamName,
             pokemons: this.teamPokemons
         };
-        console.log(this.team)
         this.teamApi.addTeam(this.team).subscribe({
             next: () => {
               this.router.navigate([`/teams`]);
@@ -116,5 +112,11 @@ export class TeamBuilderComponent {
   onCancel() {
     this.unsavedChanges = false;
     this.router.navigate([`/teams`]);
+  }
+
+  getSelectedPokemons(index: number, event: MouseEvent) {
+    console.log(index)
+    event.preventDefault();
+    this.selectedPokemon = this.teamPokemons[index];
   }
 }

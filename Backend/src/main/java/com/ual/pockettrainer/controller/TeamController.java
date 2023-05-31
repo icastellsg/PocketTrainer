@@ -33,7 +33,7 @@ public class TeamController {
         return teamService.getAllTeams();
     }
 
-    @GetMapping("/getTeam/{id}")
+    @GetMapping("/{id}")
     public Optional<Team> getTeamById(@PathVariable Long id) {
         return teamService.getTeamById(id);
     }

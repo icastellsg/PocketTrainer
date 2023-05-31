@@ -2,6 +2,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { isPokemonCaptured } from 'src/app/interfaces/PokemonCaptured';
 import { Resultado } from 'src/app/interfaces/pokeapi';
 import { Pokemon } from 'src/app/interfaces/pokemon';
+import { PokeApiService } from 'src/app/services/poke-api.service';
 import { PokemonService } from 'src/app/services/pokemon.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private pokemonService: PokemonService){}
+  constructor(private pokemonService: PokemonService, private pokeapiService: PokeApiService){}
   @ViewChild('tarjetas') tarjetasElement!:ElementRef;
 
   listaPokemon:Resultado[] = [];
@@ -29,7 +30,7 @@ export class HomeComponent implements OnInit {
   async cargarLista(){
     this.cargando = true;
 
-    this.listaPokemon = [...this.listaPokemon,  ...await this.pokemonService.getByPage(this.pagina)];
+    this.listaPokemon = [...this.listaPokemon,  ...await this.pokeapiService.getByPage(this.pagina)];
     this.cargando = false;
     this.pagina++;
   }
@@ -50,7 +51,7 @@ export class HomeComponent implements OnInit {
     if(this.pokemonSeleccionado && id === this.pokemonSeleccionado?.id.toString()){
       return this.cambiarEstadoDetalle()
     }
-    this.pokemonSeleccionado = await this.pokemonService.getById(id);
+    this.pokemonSeleccionado = await this.pokeapiService.getById(id);
   }
 
   pokemonCapturado(pokemon:isPokemonCaptured){

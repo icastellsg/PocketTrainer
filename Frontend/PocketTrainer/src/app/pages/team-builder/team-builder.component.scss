@@ -47,6 +47,13 @@ h4{
   align-items: center;
 }
 
+.flecha{
+  position: absolute;
+  height: 20px;
+  padding-right: 110px;
+  padding-top: 40px;
+}
+
 .buttons {
   width: 40%;
   display: flex;
@@ -244,4 +251,8 @@ h4 {
 
 .cdk-drop-list-dragging{
   cursor: grab;
+}
+
+.mat-tab-group {
+  height: 500px;
 }

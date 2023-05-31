@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { Pokemon } from 'src/app/interfaces/pokemon';
+import { PokeApiService } from 'src/app/services/poke-api.service';
 import { PokemonService } from 'src/app/services/pokemon.service';
 
 @Component({
@@ -13,11 +14,11 @@ export class DetalleComponent implements OnChanges {
   @Output() clicked = new EventEmitter();
   descripcion: string = '';
 
-  constructor(private pokemonService: PokemonService) {}
+  constructor(private pokeApiService: PokeApiService) {}
 
   ngOnChanges(): void {
     if (this.pokemon) {
-      this.pokemonService.getDescripcion(this.pokemon?.id).then((res) => {
+      this.pokeApiService.getDescripcion(this.pokemon?.id).then((res) => {
         this.descripcion = res
       });
     }

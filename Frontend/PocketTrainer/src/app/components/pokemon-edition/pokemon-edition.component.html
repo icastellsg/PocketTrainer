@@ -1,1 +1,67 @@
-<p>pokemon-edition works!</p>
+<div *ngIf="pokemonApiInfo" class="edition">
+  <div class = "name">
+    <div class="header">
+    <h4>Name*:</h4>
+    <mat-form-field id="pokemonName" appearance="fill">
+      <input matInput [(ngModel)]="pokemonName" placeholder="Pokemon Name" maxlength="15" />
+      <div [hidden]="!requestFailed ">
+        <small>{{ error }}</small>
+      </div>
+    </mat-form-field>
+  </div>
+    <div class="abilities">
+      <h4>Abilities*:</h4>
+      <mat-button-toggle-group *ngFor="let ability of pokemonApiInfo.abilities" #group="matButtonToggleGroup">
+        <mat-button-toggle value="left" aria-label="Text align left" (click)="updateAbility(ability.ability.name)">
+          <div class="botones">
+          <mat-icon *ngIf="ability.ability.name == pokemonAbility">label_important</mat-icon>
+          {{ability.ability.name | titlecase}}</div>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+  </div>
+  <div class="buttons">
+    <button mat-raised-button="" [disabled]="!canSave()"
+      class="mdc-button mdc-button--raised mat-mdc-raised-button mat-primary mat-mdc-button-base" (click)="onSave()">
+      <mat-icon class ="icons" aria-hidden="false" fontIcon="check"></mat-icon>
+      <span class="mdc-buttonlabel">Save</span>
+    </button>
+    <button mat-raised-button=""
+      class="mdc-button mdc-button--raised mat-mdc-raised-button mat-primary mat-mdc-button-base"
+      (click)="onCancel()">
+      <mat-icon class ="icons" aria-hidden="false" fontIcon="close"></mat-icon>
+      <span class="mdc-buttonlabel">Cancel</span>
+    </button>
+  </div>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Damage class</th>
+      <th>Power</th>
+      <th>PP</th>
+      <th>Accuracy</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr (click)="selectRow(move)" [ngClass]="{'fila-seleccionada': pokemonMoves.includes(move.name)}" *ngFor="let move of moves">
+      <td>{{ move.name }}</td>
+      <td>
+      <div class="icon {{move.type}}">
+        <span class="ejemplo"><img alt="{{ move.type }}" src="../../../assets/type-icons/png/{{ move.type }}.png"></span>
+        <span class="icon texto">{{move.type | titlecase}}</span>
+      </div>
+      </td>
+      <td>
+        <img alt="icon" src="../../../assets/damage-icons/{{move.damage_class}}.png">
+      </td>
+      <td>{{ move.power }}</td>
+      <td>{{ move.pp }}</td>
+      <td>{{ move.accuracy }}</td>
+      <td>{{ move.description }}</td>
+    </tr>
+  </tbody>
+</table>
+</div>

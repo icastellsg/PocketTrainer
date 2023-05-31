@@ -27,7 +27,8 @@
   </mat-form-field>
 </div>
 <div cdkDrag class="deck-item" *ngFor="let empty of [].constructor(6); let i=index">
-  <div *ngIf="teamPokemons[i]" class="deck-card-container" (click)="onDelete(teamPokemons[i])">
+  <div *ngIf="teamPokemons[i]" class="deck-card-container" (contextmenu)="getSelectedPokemons(i, $event)" (click)="onDelete(teamPokemons[i]) ">
+    <img *ngIf="selectedPokemon == teamPokemons[i]" src="../../../assets/img/flecha.png" class="flecha" alt="">
     <img class="pokemon-icon clickable" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{teamPokemons[i].number}}.png"
       alt={{teamPokemons[i].name}}/>
       <span>{{teamPokemons[i].name | titlecase}}</span>
@@ -38,8 +39,7 @@
     <span>??????</span>
   </div>
 </div>
-
-  </div>
+</div>
 
   <div class="container">
     <mat-tab-group>
@@ -59,8 +59,8 @@
           </div>
         </div>
       </mat-tab>
-      <mat-tab label="Selected Pokemon Details">
-        <app-pokemon-edition></app-pokemon-edition>
+      <mat-tab label="Selected Pokemon Details" [disabled]="!selectedPokemon">
+        <app-pokemon-edition *ngIf="selectedPokemon"[pokemon]="selectedPokemon"></app-pokemon-edition>
       </mat-tab>
     </mat-tab-group>
   </div>
