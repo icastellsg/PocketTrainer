@@ -25,7 +25,7 @@ jobs:
       - name: Build
         run: npx ng build --base-href /PocketTrainer/
       - name: path workaround
-        run: cp dist/PocketTrainer/index.html
+        run: cp dist/PocketTrainer/index.html dist/PocketTrainer/404.html
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
