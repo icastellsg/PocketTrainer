@@ -1,0 +1,20 @@
+name: Ivchat GitHub Actions
+on:
+  push:
+    branches:
+      - master 
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+ 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+        
+      - uses: actions/checkout@v2
+      - name: Build the stack
+        run: docker-compose up -d
