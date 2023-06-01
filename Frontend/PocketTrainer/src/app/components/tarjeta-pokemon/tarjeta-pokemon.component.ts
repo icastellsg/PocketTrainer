@@ -24,7 +24,6 @@ export class TarjetaPokemonComponent implements OnChanges {
   @Input() seleccionado:boolean = false;
   @Input() fullData?:Pokemon;
   @Output() clickeado = new EventEmitter<string>();
-  @Output() capturado = new EventEmitter<isPokemonCaptured>();
   id:string = "0";
 
 
@@ -68,13 +67,7 @@ export class TarjetaPokemonComponent implements OnChanges {
           name: result
         }
         this.pokemonService.addPokemon(pokemonCaptured).subscribe({
-          next: () => {
-            const eventPokemonCaptured: isPokemonCaptured = {
-              number: Number(this.id),
-              captured: true
-            }
-            this.capturado.emit(eventPokemonCaptured)
-        }
+          next: () => {}
         })
       }
     });
@@ -88,13 +81,7 @@ export class TarjetaPokemonComponent implements OnChanges {
     dialogRef.afterClosed().subscribe(result => {
       if (result){
         this.pokemonService.deletePokemon(Number(this.id)).subscribe({
-          next: (results) => {
-            const eventPokemonCaptured: isPokemonCaptured = {
-              number: Number(this.id),
-              captured: false
-            }
-            this.capturado.emit(eventPokemonCaptured)
-        }
+          next: () => {}
         })
       }
     });

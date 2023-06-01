@@ -12,14 +12,14 @@
   </div>
   <div class="area">
     <div class="tipos">
-      <p><span class="etiqueta">Tipo</span>
+      <p><span class="etiqueta">Type</span>
       <div class="icon {{tipo.type.name}}" *ngFor="let tipo of pokemon?.types">
         <span class="ejemplo"><img alt="icon" src="../../../assets/type-icons/png/{{tipo.type.name}}.png"></span>
         <span class="icon texto">{{tipo.type.name | titlecase}}</span>
       </div>
     </div>
-    <p><span class="etiqueta">Altura</span>{{pokemon?.height}}'</p>
-    <p><span class="etiqueta">Peso</span>{{pokemon?.weight}} lbs.</p>
+    <p><span class="etiqueta">Height</span>{{pokemon?.height ? (pokemon!.height * 0.1).toFixed(1) : ''}} m</p>
+    <p><span class="etiqueta">Weight</span>{{pokemon?.weight ? (pokemon!.weight * 0.1).toFixed(1) : ''}} kg</p>
 </div>
   <div class="area">
     <div id="descripcionContainer">

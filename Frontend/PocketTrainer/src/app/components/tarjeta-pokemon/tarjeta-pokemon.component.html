@@ -7,7 +7,7 @@
         <div class = "pokeboton"></div>
       </div>
     </ng-template>
-    <img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{id}}.png' alt="">
+    <img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{id}}.png' alt="" onerror="this.onerror=null; this.src='./../../../assets/img/pokemon.egg.png'">
     <span>Nº. {{id}}</span>
     <span *ngIf="data">{{data.name | titlecase}}</span>
   </div>

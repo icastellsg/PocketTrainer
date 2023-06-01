@@ -12,49 +12,43 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private pokemonService: PokemonService, private pokeapiService: PokeApiService){}
+  constructor(private pokemonService: PokemonService, private pokeapiService: PokeApiService){
+    this.pokemonService.notifyPokemonCaptured().subscribe(() => {
+      this.updatePokemons();
+    });
+  }
   @ViewChild('tarjetas') tarjetasElement!:ElementRef;
 
   listaPokemon:Resultado[] = [];
 
-  pagina:number = 1;
   cargando:boolean = false;
   pokemonSeleccionado?:Pokemon;
   detalle:boolean=false;
+  generation:string | undefined;
 
   ngOnInit(): void {
     this.cargarLista();
     //this.pokemonService.getById("1");
   }
 
-  async cargarLista(){
+  cargarLista(){
     this.cargando = true;
-
-    this.listaPokemon = [...this.listaPokemon,  ...await this.pokeapiService.getByPage(this.pagina)];
-    this.cargando = false;
-    this.pagina++;
-  }
-
-  onScroll(e:any){
-    if(this.cargando) return;
-    if(
-      Math.round(
-        this.tarjetasElement.nativeElement.clientHeight + this.tarjetasElement.nativeElement.scrollTop
-        )
-        === e.srcElement.scrollHeight){
-        this.cargarLista();
-      }
-
+    this.pokeapiService.getAllPokemons().subscribe((result) =>{
+      this.listaPokemon = result;
+      this.cargando = false;
+    })
   }
 
   async tarjetaClickeada(id:string){
     if(this.pokemonSeleccionado && id === this.pokemonSeleccionado?.id.toString()){
       return this.cambiarEstadoDetalle()
     }
-    this.pokemonSeleccionado = await this.pokeapiService.getById(id);
+    this.pokeapiService.getById(id).subscribe((result) =>{
+      this.pokemonSeleccionado = result;
+    })
   }
 
-  pokemonCapturado(pokemon:isPokemonCaptured){
+  pokemonCaptured(pokemon:isPokemonCaptured){
     this.listaPokemon[pokemon.number-1].captured = pokemon.captured
     console.log(this.listaPokemon[pokemon.number-1])
   }
@@ -64,17 +58,22 @@ export class HomeComponent implements OnInit {
     if(this.pokemonSeleccionado) this.detalle = !this.detalle;
   }
 
-  onChipListChange(value: string) {
-    this.listaPokemon = []
-    if(!value){
+  updatePokemons(){
+    if(!this.generation){
       this.cargarLista()
     } else
     {
       this.cargando = true;
-      this.pokemonService.getPokemonByGeneration(value).subscribe((result) =>{
-        this.listaPokemon = result
+      this.pokemonService.getPokemonByGeneration(this.generation).subscribe((result) =>{
+        this.listaPokemon = result;
         this.cargando = false;
       })
     }
+  }
+
+  onChipListChange(value: string) {
+    this.listaPokemon = []
+    this.generation = value;
+    this.updatePokemons();
   }
 }

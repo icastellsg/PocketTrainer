@@ -16,6 +16,3 @@ export interface PokemonDDBB {
   ability: string;
   teams: Team[];
 }
-export interface TeamObserver {
-  update(teams: Team[]): void;
-}

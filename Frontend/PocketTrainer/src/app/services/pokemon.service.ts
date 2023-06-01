@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Resultado } from '../interfaces/pokeapi';
-import { Observable } from 'rxjs';
+import { Observable, Subject, map } from 'rxjs';
 import { RemoteApiService } from './remote-api.service';
 import { PokemonCaptured } from '../interfaces/PokemonCaptured';
 import { PokemonDDBB } from '../interfaces/Teams';
@@ -9,6 +9,9 @@ import { PokemonDDBB } from '../interfaces/Teams';
   providedIn: 'root'
 })
 export class PokemonService {
+
+  private pokemonDDBBSubject = new Subject<PokemonDDBB>();
+  private pokemonCapturedSubject = new Subject<PokemonCaptured>();
 
   constructor(private remoteApi: RemoteApiService) { }
 
@@ -25,18 +28,41 @@ export class PokemonService {
   }
 
   addPokemon(pokemon: PokemonCaptured): Observable<PokemonCaptured> {
-    return this.remoteApi.post<any>(`http://localhost:8081/api/pokemons`, pokemon);
+    return this.remoteApi.post<any>(`http://localhost:8081/api/pokemons`, pokemon).pipe(
+      map((response) => {
+        this.pokemonCapturedSubject.next(response); // emmit update of the observer
+        return response;
+      })
+    );
   }
 
   deletePokemon(id: number): Observable<PokemonCaptured> {
-    return this.remoteApi.delete<any>(`http://localhost:8081/api/pokemons` + `/${id}`);
+    return this.remoteApi.delete<any>(`http://localhost:8081/api/pokemons` + `/${id}`).pipe(
+      map((response) => {
+        this.pokemonCapturedSubject.next(response); // emmit update of the observer
+        return response;
+      })
+    );
   }
 
   updatePokemon(id: number, pokemon: PokemonDDBB): Observable<PokemonDDBB> {
-    return this.remoteApi.put(`http://localhost:8081/api/pokemons` + `/${id}`, pokemon);
+    return this.remoteApi.put<any>(`http://localhost:8081/api/pokemons` + `/${id}`, pokemon).pipe(
+      map((response) => {
+        this.pokemonDDBBSubject.next(response); // emmit update of the observer
+        return response;
+      })
+    );
 }
 
   getPokemons(): Observable<PokemonDDBB[]> {
     return this.remoteApi.get<PokemonDDBB[]>(`http://localhost:8081/api/pokemons/allPokemons`);
+  }
+
+  notifyPokemonDDBB(): Observable<PokemonDDBB> {
+    return this.pokemonDDBBSubject.asObservable();
+  }
+
+  notifyPokemonCaptured(): Observable<PokemonCaptured> {
+    return this.pokemonCapturedSubject.asObservable();
   }
 }

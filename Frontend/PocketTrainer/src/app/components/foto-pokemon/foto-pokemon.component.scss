@@ -19,5 +19,8 @@
     max-height: 100%;
     image-rendering: pixelated;
     cursor: pointer;
+    .sprite{
+      image-rendering: pixelated;
+    }
   }
 }

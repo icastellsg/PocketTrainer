@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { MoveApiInfo } from 'src/app/interfaces/MoveApi';
 import { PokemonDDBB } from 'src/app/interfaces/Teams';
 import { MoveInfo } from 'src/app/interfaces/moves';
@@ -25,38 +26,41 @@ export class PokemonEditionComponent {
   requestFailed: boolean = false;
   pokemonAbility: string = "";
 
-  constructor(private pokeApiService: PokeApiService, private pokemonService: PokemonService) {}
+  constructor(private pokeApiService: PokeApiService, private pokemonService: PokemonService, private _snackBar: MatSnackBar) {}
 
-  async ngOnChanges(){
+  ngOnChanges(){
   if (this.pokemon) {
     this.pokemon.moves ? this.pokemonMoves = this.pokemon.moves : this.pokemonMoves = [];
     this.pokemon.ability ? this.pokemonAbility = this.pokemon.ability : this.pokemonAbility = "";
     this.pokemonName = this.pokemon.name;
-    this.pokemonApiInfo = await this.pokeApiService.getById(this.pokemon.number.toString())
-    this.pokemonApiInfo.moves.forEach(async move => {
-      const moveInfo:MoveApiInfo = await this.pokeApiService.getMovesDetails(move.move.url);
-      const moveInfoAux: MoveInfo ={
-        name: moveInfo.name,
-        accuracy: moveInfo.accuracy != null ? moveInfo.accuracy : "-",
-        type: moveInfo.type.name,
-        damage_class: moveInfo.damage_class.name,
-        description: moveInfo.effect_entries[0].short_effect,
-        power: moveInfo.power != null ? moveInfo.power : "-",
-        pp: moveInfo.pp
-      }
-      this.moves.push(moveInfoAux)
-      if(this.pokemon.moves.includes(moveInfoAux.name)){
-        this.pokemonMoves.push(moveInfoAux.name)
-      }
+
+    this.pokeApiService.getById(this.pokemon.number.toString()).subscribe((result) =>{
+      result.moves.forEach(move => {
+        this.pokeApiService.getMovesDetails(move.move.url).subscribe((moveResult) => {
+          if(moveResult){
+            const moveInfo = moveResult;
+            this.moves.push(moveInfo)
+            if(this.pokemon.moves.includes(moveInfo.name)){
+              this.pokemonMoves.push(moveInfo.name)
+            }
+          }
+        })
+      })
+      this.pokemonApiInfo = result
     })
   }
-  console.log(this.pokemonApiInfo)
   }
 
   selectRow(moveInfo: MoveInfo) {
     const moveIndex = this.pokemonMoves.indexOf(moveInfo.name);
     if (moveIndex === -1){
-      if (this.pokemonMoves.length < 4) this.pokemonMoves.push(moveInfo.name)
+      if (this.pokemonMoves.length < 4){
+        this.pokemonMoves.push(moveInfo.name);
+      }else{
+        const config = new MatSnackBarConfig();
+        config.duration = 8000;
+        this._snackBar.open("The maximum of moves a pokemon can learn is 4", '✖', config);
+      }
     } else{
       this.pokemonMoves.splice(moveIndex, 1);
     }

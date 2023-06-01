@@ -13,7 +13,7 @@
       <h4>Abilities*:</h4>
       <mat-button-toggle-group *ngFor="let ability of pokemonApiInfo.abilities" #group="matButtonToggleGroup">
         <mat-button-toggle value="left" aria-label="Text align left" (click)="updateAbility(ability.ability.name)">
-          <div class="botones">
+          <div class="ability">
           <mat-icon *ngIf="ability.ability.name == pokemonAbility">label_important</mat-icon>
           {{ability.ability.name | titlecase}}</div>
         </mat-button-toggle>

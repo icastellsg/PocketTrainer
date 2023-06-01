@@ -11,6 +11,7 @@ export class FotoPokemonComponent {
 
   @Input() pokemon?:Pokemon;
   imagenActual: string = "";
+  sprite: boolean = true;
 
   ngOnChanges() {
     if (this.pokemon) {
@@ -22,8 +23,10 @@ export class FotoPokemonComponent {
     if (this.pokemon) {
       if (this.imagenActual === this.pokemon.sprites.front_default) {
         this.imagenActual = this.pokemon.sprites.other.dream_world.front_default ? this.pokemon.sprites.other.dream_world.front_default : this.pokemon.sprites.other['official-artwork'].front_default;
+        this.sprite = false
       } else {
         this.imagenActual = this.pokemon.sprites.front_default;
+        this.sprite = false
       }
     }
   }

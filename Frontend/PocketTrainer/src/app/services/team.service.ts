@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, Subject, map } from 'rxjs';
 import { RemoteApiService } from './remote-api.service';
 import { Team } from '../interfaces/Teams';
 
@@ -11,6 +11,7 @@ export class TeamService {
   constructor(private remoteApi: RemoteApiService) { }
 
   private teamsUrl = `http://localhost:8081/api/teams`;
+  private teamSubject = new Subject<Team>();
 
   getTeams(): Observable<any> {
     return this.remoteApi.get<any>(`${this.teamsUrl}/allTeams`).pipe(
@@ -33,6 +34,16 @@ export class TeamService {
   }
 
   deleteTeam(id: number): Observable<Team> {
-    return this.remoteApi.delete<any>(this.teamsUrl + `/${id}`);
+    return this.remoteApi.delete<any>(this.teamsUrl + `/${id}`).pipe(
+      map((response) => {
+        this.teamSubject.next(response); // emmit update of the observer
+        return response;
+      })
+    );
+  }
+
+  // Observer pattern. Mehtod to subscribe to the delete event of a team
+  notify(): Observable<Team> {
+    return this.teamSubject.asObservable();
   }
 }

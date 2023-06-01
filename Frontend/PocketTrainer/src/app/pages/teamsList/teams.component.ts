@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { Subscription } from 'rxjs';
 import { DeleteTeamComponent } from 'src/app/components/delete-team/delete-team.component';
-import { Team, TeamObserver } from 'src/app/interfaces/Teams';
+import { Team } from 'src/app/interfaces/Teams';
 import { TeamService } from 'src/app/services/team.service';
 
 @Component({
@@ -9,20 +11,24 @@ import { TeamService } from 'src/app/services/team.service';
   templateUrl: './teams.component.html',
   styleUrls: ['./teams.component.scss']
 })
-export class TeamsComponent implements TeamObserver{
+export class TeamsComponent implements OnInit{
 
   teams: Team[] = []
-  filteredTeams: Team[] = []
 
-  constructor(private teamApi: TeamService, public dialog: MatDialog) {}
-  update(teams: Team[]): void {
-    throw new Error('Method not implemented.');
+  constructor(private teamApi: TeamService, public dialog: MatDialog, private _snackBar: MatSnackBar) {
+    // Suscríbete al Observable del TeamService
+    this.teamApi.notify().subscribe(() => {
+      this.updateTeams();
+    });
   }
-
-  ngOnInit() {
+  updateTeams() {
     this.teamApi.getTeams().subscribe((result) => {
       this.teams = result;
     });
+  }
+
+  ngOnInit() {
+    this.updateTeams();
   }
 
   openDialog(event: MouseEvent, team: Team): void {
@@ -34,9 +40,11 @@ export class TeamsComponent implements TeamObserver{
     dialogRef.afterClosed().subscribe(result => {
       if (result){
         this.teamApi.deleteTeam(Number(team.id)).subscribe({
-          next: (result) => {
-            console.log(result)
-        }
+          next: () => {
+            const config = new MatSnackBarConfig();
+            config.duration = 8000;
+            this._snackBar.open('Team deleted succesfully', '✖', config);
+          }
         })
       }
     });

@@ -32,7 +32,12 @@ export class TeamBuilderComponent {
     private route: ActivatedRoute,
     private teamApi: TeamService,
     private pokemonApi: PokemonService
-) {}
+    )
+    {
+      this.pokemonApi.notifyPokemonDDBB().subscribe(() => {
+        this.updatePokemons();
+      });
+    }
 
   ngOnInit(){
     this.teamId = parseInt(
@@ -49,9 +54,7 @@ export class TeamBuilderComponent {
     this.teamName = 'new team'
   }
 
-  this.pokemonApi.getPokemons().subscribe((result) => {
-    this.pokemons = result;
-  });
+  this.updatePokemons();
   }
 
   onAdd(pokemon: PokemonDDBB) {
@@ -60,9 +63,15 @@ export class TeamBuilderComponent {
     }
   }
 
+  updatePokemons(){
+    this.pokemonApi.getPokemons().subscribe((result) => {
+      this.pokemons = result;
+    });
+  }
+
   onDelete(pokemon: PokemonDDBB) {
     this.teamPokemons.splice(this.teamPokemons.indexOf(pokemon), 1);
-}
+  }
 
   alreadyOnTeam(pokemon: PokemonDDBB) {
     return this.teamPokemons.some(p => p.number === pokemon.number)

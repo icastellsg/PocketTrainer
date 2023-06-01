@@ -9,7 +9,7 @@
   [pokemon]="pokemonSeleccionado"
   [ngClass]="{abierto: detalle}"
   ></app-foto-pokemon>
-  <div id="tarjetasContainer" #tarjetas (scroll)="onScroll($event)">
+  <div id="tarjetasContainer" #tarjetas>
     <div class="filtro">
       <span style="margin-right: 10px;">Generation:</span>
       <app-generacion (change)="onChipListChange($event)"></app-generacion>
@@ -18,7 +18,6 @@
     [data]="pokemon"
     [seleccionado]="pokemon.name === pokemonSeleccionado?.name"
     (clickeado)="tarjetaClickeada($event)"
-    (capturado)="pokemonCapturado($event)"
     >
   </app-tarjeta-pokemon>
   <img src="./../../../assets/img/spinner.svg" alt="Cargando" id="spinner" *ngIf="cargando">
