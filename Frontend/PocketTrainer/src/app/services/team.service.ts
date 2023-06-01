@@ -10,7 +10,7 @@ export class TeamService {
 
   constructor(private remoteApi: RemoteApiService) { }
 
-  private teamsUrl = `http://34.16.151.98:8081/api/teams`;
+  private teamsUrl = `http://34.125.57.167:8081/api/teams`;
   private teamSubject = new Subject<Team>();
 
   getTeams(): Observable<any> {

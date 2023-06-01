@@ -14,7 +14,7 @@ import { MoveInfo } from '../interfaces/moves';
 })
 export class PokeApiService {
 
-  private pokemonUrl = 'http://34.16.151.98:8081/api/pokeapi';
+  private pokemonUrl = 'http://34.125.57.167:8081/api/pokeapi';
   private pokeApi = 'https://pokeapi.co/api/v2'
   constructor(private remoteApi: RemoteApiService, private http: HttpClient) { }
 

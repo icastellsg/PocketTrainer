@@ -18,17 +18,17 @@ export class PokemonService {
   getPokemonCaptured(id:string):Observable<boolean>{
     //const res = await fetch(`localhost:8081/api/pokemons/search/existsByNumber?number=1`);
     //return await res.json();
-    return this.remoteApi.get<boolean>(`http://34.16.151.98:8081/api/pokemons/exist/${id}`);
+    return this.remoteApi.get<boolean>(`http://34.125.57.167:8081/api/pokemons/exist/${id}`);
   }
 
   getPokemonByGeneration(id:string):Observable<Resultado[]>{
     //const res = await fetch(`localhost:8081/api/pokemons/search/existsByNumber?number=1`);
     //return await res.json();
-    return this.remoteApi.get<Resultado[]>(`http://34.16.151.98:8081/api/pokeapi/generations/${id}`);
+    return this.remoteApi.get<Resultado[]>(`http://34.125.57.167:8081/api/pokeapi/generations/${id}`);
   }
 
   addPokemon(pokemon: PokemonCaptured): Observable<PokemonCaptured> {
-    return this.remoteApi.post<any>(`http://34.16.151.98:8081/api/pokemons`, pokemon).pipe(
+    return this.remoteApi.post<any>(`http://34.125.57.167:8081/api/pokemons`, pokemon).pipe(
       map((response) => {
         this.pokemonCapturedSubject.next(response); // emmit update of the observer
         return response;
@@ -37,7 +37,7 @@ export class PokemonService {
   }
 
   deletePokemon(id: number): Observable<PokemonCaptured> {
-    return this.remoteApi.delete<any>(`http://34.16.151.98:8081/api/pokemons` + `/${id}`).pipe(
+    return this.remoteApi.delete<any>(`http://34.125.57.167:8081/api/pokemons` + `/${id}`).pipe(
       map((response) => {
         this.pokemonCapturedSubject.next(response); // emmit update of the observer
         return response;
@@ -46,7 +46,7 @@ export class PokemonService {
   }
 
   updatePokemon(id: number, pokemon: PokemonDDBB): Observable<PokemonDDBB> {
-    return this.remoteApi.put<any>(`http://34.16.151.98:8081/api/pokemons` + `/${id}`, pokemon).pipe(
+    return this.remoteApi.put<any>(`http://34.125.57.167:8081/api/pokemons` + `/${id}`, pokemon).pipe(
       map((response) => {
         this.pokemonDDBBSubject.next(response); // emmit update of the observer
         return response;
@@ -55,7 +55,7 @@ export class PokemonService {
 }
 
   getPokemons(): Observable<PokemonDDBB[]> {
-    return this.remoteApi.get<PokemonDDBB[]>(`http://34.16.151.98:8081/api/pokemons/allPokemons`);
+    return this.remoteApi.get<PokemonDDBB[]>(`http://34.125.57.167:8081/api/pokemons/allPokemons`);
   }
 
   notifyPokemonDDBB(): Observable<PokemonDDBB> {

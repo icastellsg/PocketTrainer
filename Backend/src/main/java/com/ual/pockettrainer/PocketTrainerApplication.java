@@ -17,7 +17,7 @@ public class PocketTrainerApplication {
 		CorsConfiguration corsConfiguration = new CorsConfiguration();
 		corsConfiguration.setAllowCredentials(true);
 		corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4200",
-				"http://localhost:8080", "http://34.16.151.98", "http://34.16.151.98:8081",
+				"http://localhost:8080", "http://34.125.57.167", "http://34.125.57.167:8081",
 				"https://ualdra.github.io"));
 		corsConfiguration.setAllowedHeaders(Arrays.asList("Origin",
 				"Access-Control-Allow-Origin", "Content-Type",
