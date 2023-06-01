@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Pokedex": {
+    "PocketTrainer": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/pokedex",
+            "outputPath": "dist/PocketTrainer",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -66,10 +66,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Pokedex:build:production"
+              "browserTarget": "PocketTrainer:build:production"
             },
             "development": {
-              "browserTarget": "Pokedex:build:development"
+              "browserTarget": "PocketTrainer:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -77,7 +77,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Pokedex:build"
+            "browserTarget": "PocketTrainer:build"
           }
         },
         "test": {
