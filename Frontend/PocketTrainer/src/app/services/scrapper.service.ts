@@ -8,7 +8,7 @@ import { Nickname } from '../interfaces/Nickname';
 })
 export class ScrapperService {
 
-  private scrapperUrl = `http://localhost:8081/api/nickname/generate`;
+  private scrapperUrl = `http://34.16.151.98:8081/api/nickname/generate`;
 
   constructor(private remoteApi: RemoteApiService) { }
 
