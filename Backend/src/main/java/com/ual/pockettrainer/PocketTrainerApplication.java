@@ -18,7 +18,7 @@ public class PocketTrainerApplication {
 		corsConfiguration.setAllowCredentials(true);
 		corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4200",
 				"http://localhost:8080", "http://34.125.57.167:443", "http://34.125.57.167:8081",
-				"https://ualdra.github.io"));
+				"https://icastellsg.github.io"));
 		corsConfiguration.setAllowedHeaders(Arrays.asList("Origin",
 				"Access-Control-Allow-Origin", "Content-Type",
 				"Accept", "Authorization", "Origin, Accept", "X-Requested-With",
