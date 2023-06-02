@@ -95,6 +95,9 @@
             "production": {
               "browserTarget": "PocketTrainer:build:production"
             },
+            "deployment": {
+              "browserTarget": "rps-101:build:deployment"
+            },
             "development": {
               "browserTarget": "PocketTrainer:build:development"
             }
