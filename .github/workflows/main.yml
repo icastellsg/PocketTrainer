@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build
-        run: npx ng build --base-href /PocketTrainer/
+        run: npx ng build --base-href /PocketTrainer/ --configuration deployment
       - name: path workaround
         run: cp dist/PocketTrainer/index.html dist/PocketTrainer/404.html
       - name: Deploy 🚀
