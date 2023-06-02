@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { RemoteApiService } from './remote-api.service';
 import { Observable } from 'rxjs';
 import { Nickname } from '../interfaces/Nickname';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScrapperService {
 
-  private scrapperUrl = `http://34.125.57.167:8081/api/nickname/generate`;
+  private scrapperUrl = `${environment.apiBaseUrl}/nickname/generate`;
 
   constructor(private remoteApi: RemoteApiService) { }
 

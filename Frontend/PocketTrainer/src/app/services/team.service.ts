@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject, map } from 'rxjs';
 import { RemoteApiService } from './remote-api.service';
 import { Team } from '../interfaces/Teams';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class TeamService {
 
   constructor(private remoteApi: RemoteApiService) { }
 
-  private teamsUrl = `http://34.125.57.167:8081/api/teams`;
+  private teamsUrl = `${environment.apiBaseUrl}/teams`;
   private teamSubject = new Subject<Team>();
 
   getTeams(): Observable<any> {

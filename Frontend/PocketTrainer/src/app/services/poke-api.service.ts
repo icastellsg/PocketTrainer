@@ -8,13 +8,14 @@ import { Observable, catchError, defaultIfEmpty, map, of } from 'rxjs';
 import { PokemonSpecies } from '../interfaces/pokemon-species';
 import { HttpClient } from '@angular/common/http';
 import { MoveInfo } from '../interfaces/moves';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokeApiService {
 
-  private pokemonUrl = 'http://34.125.57.167:8081/api/pokeapi';
+  private pokemonUrl = `${environment.apiBaseUrl}/pokeapi`;
   private pokeApi = 'https://pokeapi.co/api/v2'
   constructor(private remoteApi: RemoteApiService, private http: HttpClient) { }
 

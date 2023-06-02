@@ -39,5 +39,4 @@ public class PocketTrainerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PocketTrainerApplication.class, args);
 	}
-
 }
