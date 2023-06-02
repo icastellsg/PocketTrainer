@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,8 +18,11 @@ import com.ual.pockettrainer.entity.Team;
 import com.ual.pockettrainer.repository.TeamRepository;
 import com.ual.pockettrainer.service.TeamService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/teams")
+@Tag(name = "Team")
 public class TeamController {
 
     @Autowired
@@ -30,18 +32,18 @@ public class TeamController {
     private TeamRepository teamRepository;
 
     @GetMapping("/allTeams")
-    public List<Team> getAllTeams() {
-        return teamService.getAllTeams();
+    public ResponseEntity<List<Team>> getAllTeams() {
+        return ResponseEntity.ok(teamService.getAllTeams());
     }
 
     @GetMapping("/{id}")
-    public Optional<Team> getTeamById(@PathVariable Long id) {
-        return teamService.getTeamById(id);
+    public ResponseEntity<Optional<Team>> getTeamById(@PathVariable Long id) {
+        return ResponseEntity.ok(teamService.getTeamById(id));
     }
 
     @PostMapping
-    public Team createTeamWithPokemons(@RequestBody Team team) {
-        return this.teamRepository.save(team);
+    public ResponseEntity<Team> createTeamWithPokemons(@RequestBody Team team) {
+        return ResponseEntity.ok(this.teamRepository.save(team));
     }
 
     @PutMapping("/{id}")

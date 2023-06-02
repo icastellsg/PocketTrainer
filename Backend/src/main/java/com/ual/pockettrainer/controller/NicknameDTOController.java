@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ual.pockettrainer.dto.NicknameDTO;
 import com.ual.pockettrainer.service.NicknameGeneratorService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/nickname")
+@Tag(name = "Nickname generator (Scrapper)")
 public class NicknameDTOController {
     @Autowired
     private NicknameGeneratorService nicknameGeneratorService;
