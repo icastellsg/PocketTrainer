@@ -28,11 +28,10 @@
 </div>
 <div cdkDrag class="deck-item" *ngFor="let empty of [].constructor(6); let i=index">
   <div *ngIf="teamPokemons[i]" class="deck-card-container" (contextmenu)="getSelectedPokemons(i, $event)" (click)="onDelete(teamPokemons[i]) ">
-    <img *ngIf="selectedPokemon == teamPokemons[i]" src="../../../assets/img/flecha.png" class="flecha" alt="">
+    <img *ngIf="selectedPokemon == teamPokemons[i]" src="assets/img/flecha.png" class="flecha" alt="">
     <img class="pokemon-icon clickable" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{teamPokemons[i].number}}.png"
-      alt={{teamPokemons[i].name}} onerror="this.onerror=null; this.src='./../../../assets/img/pokemon.egg.png'"/>
+      alt={{teamPokemons[i].name}} onerror="this.onerror=null; this.src='assets/img/pokemon.egg.png'"/>
       <span>{{teamPokemons[i].name | titlecase}}</span>
-    <!-- <app-card cdkDragHandle [name]="deckCards[i]"></app-card> -->
   </div>
   <div *ngIf="!teamPokemons[i]" class="deck-card-container">
     <img class="pokemon-icon " src="https://richi3f.github.io/pokemon-team-planner/static/img/sv-pokemon/0000_000.png" alt="Empty card" />
@@ -52,7 +51,7 @@
                 <div class="pokeball"></div>
               </div>
               <div class="pokemons">
-                <img class="pokemon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.number}}.png" alt="{{pokemon.name}}" onerror="this.onerror=null; this.src='./../../../assets/img/pokemon.egg.png'">
+                <img class="pokemon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.number}}.png" alt="{{pokemon.name}}" onerror="this.onerror=null; this.src='assets/img/pokemon.egg.png'">
                 <span>{{pokemon.name | titlecase}}</span>
               </div>
             </div>

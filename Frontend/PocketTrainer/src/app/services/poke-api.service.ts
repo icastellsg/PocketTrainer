@@ -3,7 +3,6 @@ import { RemoteApiService } from './remote-api.service';
 import { Resultado } from '../interfaces/pokeapi';
 import { Pokemon } from '../interfaces/pokemon';
 import { MoveApiInfo } from '../interfaces/MoveApi';
-import { moveInfoMock } from 'src/assets/mocks/mockPokemonMove';
 import { Observable, catchError, defaultIfEmpty, map, of } from 'rxjs';
 import { PokemonSpecies } from '../interfaces/pokemon-species';
 import { HttpClient } from '@angular/common/http';

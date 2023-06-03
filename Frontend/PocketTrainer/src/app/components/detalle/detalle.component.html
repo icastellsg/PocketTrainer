@@ -14,7 +14,7 @@
     <div class="tipos">
       <p><span class="etiqueta">Type</span>
       <div class="icon {{tipo.type.name}}" *ngFor="let tipo of pokemon?.types">
-        <span class="ejemplo"><img alt="icon" src="../../../assets/type-icons/png/{{tipo.type.name}}.png"></span>
+        <span class="ejemplo"><img alt="icon" src="assets/type-icons/png/{{tipo.type.name}}.png"></span>
         <span class="icon texto">{{tipo.type.name | titlecase}}</span>
       </div>
     </div>
@@ -30,6 +30,6 @@
   </div>
   </div>
   <button (click)="clicked.emit()">
-    <img src="./../../../assets/img/flecha.png" alt="" [ngClass]="{girar: abierto}">
+    <img src="assets/img/flecha.png" alt="" [ngClass]="{girar: abierto}">
   </button>
 </div>

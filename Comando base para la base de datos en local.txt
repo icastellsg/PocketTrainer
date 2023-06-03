@@ -1,1 +1,0 @@
-docker run -d --name postgresql_database_pokemon -e POSTGRES_USER=pokemon -e POSTGRES_PASSWORD=pokemon -e POSTGRES_DB=db -p 5432:5432 -v data:/var/lib/pgsql/data postgres
