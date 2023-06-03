@@ -124,7 +124,6 @@ export class TeamBuilderComponent {
   }
 
   getSelectedPokemons(index: number, event: MouseEvent) {
-    console.log(index)
     event.preventDefault();
     this.selectedPokemon = this.teamPokemons[index];
   }

@@ -14,7 +14,6 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 })
 export class PokemonEditionComponent {
 
-  unsavedChanges: boolean = true;
   error: string = "ERROR : Team name can't be over 15 characters.";
   isSavingPokemon: boolean = false;
 
@@ -29,26 +28,7 @@ export class PokemonEditionComponent {
   constructor(private pokeApiService: PokeApiService, private pokemonService: PokemonService, private _snackBar: MatSnackBar) {}
 
   ngOnChanges(){
-  if (this.pokemon) {
-    this.pokemon.moves ? this.pokemonMoves = this.pokemon.moves : this.pokemonMoves = [];
-    this.pokemon.ability ? this.pokemonAbility = this.pokemon.ability : this.pokemonAbility = "";
-    this.pokemonName = this.pokemon.name;
-
-    this.pokeApiService.getById(this.pokemon.number.toString()).subscribe((result) =>{
-      result.moves.forEach(move => {
-        this.pokeApiService.getMovesDetails(move.move.url).subscribe((moveResult) => {
-          if(moveResult){
-            const moveInfo = moveResult;
-            this.moves.push(moveInfo)
-            if(this.pokemon.moves.includes(moveInfo.name)){
-              this.pokemonMoves.push(moveInfo.name)
-            }
-          }
-        })
-      })
-      this.pokemonApiInfo = result
-    })
-  }
+    this.updatePokemon();
   }
 
   selectRow(moveInfo: MoveInfo) {
@@ -64,7 +44,6 @@ export class PokemonEditionComponent {
     } else{
       this.pokemonMoves.splice(moveIndex, 1);
     }
-    console.log(this.pokemonMoves)
   }
 
   updateAbility(ability: string){
@@ -78,7 +57,6 @@ export class PokemonEditionComponent {
   onSave() {
     if (!this.canSave()) return;
 
-    this.unsavedChanges = false;
     this.isSavingPokemon = true;
 
     {
@@ -87,7 +65,11 @@ export class PokemonEditionComponent {
       this.pokemon.moves = this.pokemonMoves;
 
         this.pokemonService.updatePokemon(this.pokemon.number, this.pokemon).subscribe({
-            next: () => {},
+            next: () => {
+              const config = new MatSnackBarConfig();
+              config.duration = 8000;
+              this._snackBar.open("Pokemon details saved succesfuly", '✖', config);
+            },
             error: () => {},
             complete: () => {
                 this.isSavingPokemon = false;
@@ -97,9 +79,32 @@ export class PokemonEditionComponent {
   }
 
   onCancel() {
-    this.unsavedChanges = false;
     this.pokemonName = this.pokemon.name;
     this.pokemonAbility = this.pokemon.ability;
-    this.pokemonMoves = this.pokemon.moves;
+    this.pokemonMoves = Object.assign([], this.pokemon.moves);
+  }
+
+  updatePokemon(){
+    if (this.pokemon) {
+      this.moves = [];
+      this.pokemon.moves ? this.pokemonMoves = Object.assign([], this.pokemon.moves) : this.pokemonMoves = [];
+      this.pokemon.ability ? this.pokemonAbility = this.pokemon.ability : this.pokemonAbility = "";
+      this.pokemonName = this.pokemon.name;
+
+      this.pokeApiService.getById(this.pokemon.number.toString()).subscribe((result) =>{
+        result.moves.forEach(move => {
+          this.pokeApiService.getMovesDetails(move.move.url).subscribe((moveResult) => {
+            if(moveResult){
+              const moveInfo = moveResult;
+              this.moves.push(moveInfo)
+              if(this.pokemon.moves.includes(moveInfo.name)){
+                this.pokemonMoves.push(moveInfo.name)
+              }
+            }
+          })
+        })
+        this.pokemonApiInfo = result
+      })
+    }
   }
 }

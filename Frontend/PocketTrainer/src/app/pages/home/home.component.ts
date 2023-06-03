@@ -50,7 +50,6 @@ export class HomeComponent implements OnInit {
 
   pokemonCaptured(pokemon:isPokemonCaptured){
     this.listaPokemon[pokemon.number-1].captured = pokemon.captured
-    console.log(this.listaPokemon[pokemon.number-1])
   }
 
 
