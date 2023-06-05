@@ -61,7 +61,7 @@ public class PokemonController {
         return ResponseEntity.ok(existingPokemon);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{number}")
     public ResponseEntity<Void> deletePokemon(@PathVariable Long number) {
         pokemonRepository.deleteById(number);
         return ResponseEntity.noContent().build();
